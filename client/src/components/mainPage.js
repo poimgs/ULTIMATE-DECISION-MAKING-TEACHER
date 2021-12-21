@@ -16,7 +16,7 @@ const MainPage = () => {
     }
 
     const handleInputEnter = (e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && inputValue.length > 0) {
             const newChoices = choices.concat([inputValue]);
             setChoices(newChoices);
             setInputValue("");
