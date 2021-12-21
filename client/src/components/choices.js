@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Choices = ({ choices, onDelete }) => {
+
     return (
         <List>
             {choices.map((choice, index) => {

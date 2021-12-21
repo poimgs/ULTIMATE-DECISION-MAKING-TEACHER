@@ -5,11 +5,15 @@ import ChoiceInput from "./choiceInput";
 import Choices from "./choices"
 import ChooseButton from "./chooseButton";
 import ChosenDecision from "./chosenDecision";
+import YesNoButtons from "./yesNoButtons";
 
 const MainPage = () => {
     const [inputValue, setInputValue] = useState("");
     const [choices, setChoices] = useState([]);
-    const [chosen, setChoice] = useState("");
+    const [choicesSeen, setChoicesSeen] = useState([]);
+    const [choice, setChoice] = useState("");
+    const [showYesNo, setShowYesNo] = useState(false);
+    const [numClickYes, setNumClickYes] = useState(0);
 
     const handleInputValueChange = (e) => {
         setInputValue(e.target.value);
@@ -31,8 +35,40 @@ const MainPage = () => {
     }
 
     const handleChooseButtonClick = (e) => {
-        const choice = choices[Math.floor(Math.random() * choices.length)];
+        const choicesSeenSet = new Set(choicesSeen);
+        const updatedChoices = choices.filter((choice) => {
+            return !choicesSeenSet.has(choice);
+        })
+
+        const choice = updatedChoices[Math.floor(Math.random() * updatedChoices.length)];
+        const updatedChoicesSeen = choicesSeen.concat([choice]);
+
+        if (choicesSeen.length === choices.length - 1) {
+            setChoicesSeen([choice]);
+        } else {
+            setChoicesSeen(updatedChoicesSeen);
+        }
+
         setChoice(choice);
+        setShowYesNo(true);
+        setNumClickYes(0);
+    }
+
+    const handleYesButtonClick = (e) => {
+        const capitalizedChoice = choice.toUpperCase() + "!!!";
+        setChoice(capitalizedChoice);
+        setNumClickYes(numClickYes + 1);
+    }
+
+    const handleNoButtonClick = (e) => {
+        const newChoices = choices.slice()
+        const indexOfchoice = newChoices.indexOf(choice);
+        newChoices.splice(indexOfchoice, 1);
+        setChoices(newChoices);
+
+        const updatedChoice = "Yeah, screw that choice!";
+        setChoice(updatedChoice);
+        setShowYesNo(false);
     }
 
     return (
@@ -45,7 +81,14 @@ const MainPage = () => {
             />
             <Choices choices={choices} onDelete={handleDeleteChoice} />
             <ChooseButton choices={choices} onClick={handleChooseButtonClick} />
-            <ChosenDecision decision={chosen} />
+            <ChosenDecision decision={choice} />
+            <YesNoButtons
+                decision={choice}
+                show={showYesNo}
+                numClickYes={numClickYes}
+                onYesButtonClick={handleYesButtonClick}
+                onNoButtonClick={handleNoButtonClick}
+            />
         </Container>
     )
 }
