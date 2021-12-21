@@ -1,0 +1,14 @@
+# ======
+# Client
+# ======
+
+# dependencies
+client/node_modules
+
+# production
+# client/build
+
+# ===
+# etc
+# ===
+streamlit_frontend
