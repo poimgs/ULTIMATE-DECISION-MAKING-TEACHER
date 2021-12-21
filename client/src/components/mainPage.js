@@ -24,6 +24,7 @@ const MainPage = () => {
             const newChoices = choices.concat([inputValue]);
             setChoices(newChoices);
             setInputValue("");
+            setChoice("");
         }
     }
 
@@ -32,6 +33,7 @@ const MainPage = () => {
             return index !== indexToDelete;
         })
         setChoices(newChoices);
+        setChoice("");
     }
 
     const handleChooseButtonClick = (e) => {
