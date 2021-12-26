@@ -28,11 +28,20 @@ const MainPage = () => {
         }
     }
 
+    const handleEditChoiceChange = (e, index) => {
+        const updatedChoices = choices.slice();
+        updatedChoices[index] = e.target.value;
+
+        setChoices(updatedChoices);
+    }
+
     const handleDeleteChoice = (indexToDelete) => {
-        const newChoices = choices.filter((choice, index) => {
+        const updatedChoices = choices.filter((choice, index) => {
             return index !== indexToDelete;
         })
-        setChoices(newChoices);
+
+        setChoices(updatedChoices);
+        setChoicesSeen([]);
         setChoice("");
     }
 
@@ -42,16 +51,16 @@ const MainPage = () => {
             return !choicesSeenSet.has(choice);
         })
 
-        const choice = updatedChoices[Math.floor(Math.random() * updatedChoices.length)];
-        const updatedChoicesSeen = choicesSeen.concat([choice]);
+        const newChoice = updatedChoices[Math.floor(Math.random() * updatedChoices.length)];
+        const updatedChoicesSeen = choicesSeen.concat([newChoice]);
 
-        if (choicesSeen.length === choices.length - 1) {
-            setChoicesSeen([choice]);
+        if (choicesSeen.length >= choices.length - 1) {
+            setChoicesSeen([newChoice]);
         } else {
             setChoicesSeen(updatedChoicesSeen);
         }
 
-        setChoice(choice);
+        setChoice(newChoice);
         setShowYesNo(true);
         setNumClickYes(0);
     }
@@ -81,7 +90,7 @@ const MainPage = () => {
                 onChange={handleInputValueChange}
                 onEnter={handleInputEnter}
             />
-            <Choices choices={choices} onDelete={handleDeleteChoice} />
+            <Choices choices={choices} onDelete={handleDeleteChoice} onEditChoice={handleEditChoiceChange} />
             <ChooseButton choices={choices} onClick={handleChooseButtonClick} />
             <ChosenDecision decision={choice} />
             <YesNoButtons

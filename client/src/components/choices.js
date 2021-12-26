@@ -1,26 +1,22 @@
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Choice from './choice'
 
-const Choices = ({ choices, onDelete }) => {
+
+
+const Choices = ({ choices, onDelete, onEditChoice }) => {
+
 
     return (
         <List>
             {choices.map((choice, index) => {
                 return (
-                    <ListItem key={index}>
-                        <ListItemText
-                            primary={choice}
-                            primaryTypographyProps={{
-                                variant: "h4",
-                            }}
-                        />
-                        <IconButton onClick={() => onDelete(index)}>
-                            <DeleteIcon />
-                        </IconButton>
-                    </ListItem>
+                    <Choice
+                        choice={choice}
+                        index={index}
+                        onEditChoice={onEditChoice}
+                        onDelete={onDelete}
+                    />
                 )
             })}
         </List>

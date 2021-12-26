@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 
 const ChoiceInput = ({ inputValue, onChange, onEnter }) => {
@@ -8,6 +7,7 @@ const ChoiceInput = ({ inputValue, onChange, onEnter }) => {
             variant="outlined"
             fullWidth
             value={inputValue}
+            helperText="Press Enter to Submit"
             onChange={(e) => onChange(e)}
             onKeyDown={(e) => onEnter(e)}
         />

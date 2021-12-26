@@ -7,7 +7,7 @@ const Header = () => {
             align="center"
             gutterBottom
         >
-            ULTIMATE DECISION MAKING TEACHER
+            DEMAND Enables Making a New Decision
         </Typography>
     )
 }
