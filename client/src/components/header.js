@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
@@ -10,6 +9,7 @@ const Header = () => {
     const [editing, setEditing] = useState(false);
 
     const handleClick = () => {
+        setHeader("");
         setEditing(true);
     }
 
@@ -29,7 +29,7 @@ const Header = () => {
                 variant="outlined"
                 align="center"
                 value={header}
-                placeholder="What do you want?"
+                placeholder="What does [your name] want?"
                 helperText="Press Enter to change question"
                 fullWidth
                 inputProps={{ style: { textAlign: 'center', fontSize: '3.4rem' } }}
