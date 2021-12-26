@@ -2,7 +2,6 @@ import { useState } from "react";
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
-import Input from '@mui/material/Input'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -23,7 +22,7 @@ const Choice = ({ choice, index, onEditChoice, onDelete }) => {
                     variant="standard"
                     value={choice}
                     placeholder="Don't leave me empty!"
-                    helperText="Press Enter to Submit"
+                    helperText="Press Enter to Edit Choice"
                     fullWidth
                     inputProps={{ style: { fontSize: '2rem' } }}
                     onChange={(e) => onEditChoice(e, index)}
