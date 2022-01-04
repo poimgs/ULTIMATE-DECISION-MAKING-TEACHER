@@ -2,15 +2,22 @@ import { useState } from "react";
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import CachedIcon from '@mui/icons-material/Cached';
 import TextField from '@mui/material/TextField';
 
-const Header = () => {
+const Header = ({ onResetButtonClick }) => {
     const [header, setHeader] = useState("What do I want?")
     const [editing, setEditing] = useState(false);
 
-    const handleClick = () => {
+    const handleEditButtonClick = () => {
         setHeader("");
         setEditing(true);
+    }
+
+    const handleResetButtonClick = () => {
+        setHeader("What do I want?");
+        setEditing(false);
+        onResetButtonClick();
     }
 
     const handleChange = (e) => {
@@ -45,10 +52,14 @@ const Header = () => {
                 gutterBottom
             >
                 {header}
-                <IconButton>
+                <IconButton onClick={() => handleEditButtonClick()}>
                     <EditIcon
                         fontSize="large"
-                        onClick={() => handleClick()}
+                    />
+                </IconButton>
+                <IconButton onClick={() => handleResetButtonClick()}>
+                    <CachedIcon
+                        fontSize="large"
                     />
                 </IconButton>
             </Typography>

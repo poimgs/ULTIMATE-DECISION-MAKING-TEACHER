@@ -15,6 +15,14 @@ const MainPage = () => {
     const [showYesNo, setShowYesNo] = useState(false);
     const [numClickYes, setNumClickYes] = useState(0);
 
+    const handleResetButtonClick = () => {
+        setChoices([]);
+        setChoicesSeen([]);
+        setChoice("");
+        setShowYesNo(false);
+        setNumClickYes(0);
+    }
+
     const handleInputValueChange = (e) => {
         setInputValue(e.target.value);
     }
@@ -84,7 +92,7 @@ const MainPage = () => {
 
     return (
         <Container>
-            <Header />
+            <Header onResetButtonClick={handleResetButtonClick} />
             <ChoiceInput
                 inputValue={inputValue}
                 onChange={handleInputValueChange}

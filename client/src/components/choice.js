@@ -17,7 +17,7 @@ const Choice = ({ choice, index, onEditChoice, onDelete }) => {
 
     if (editing) {
         return (
-            <ListItem key={index}>
+            <ListItem>
                 <TextField
                     variant="standard"
                     value={choice}
@@ -32,15 +32,15 @@ const Choice = ({ choice, index, onEditChoice, onDelete }) => {
         )
     } else {
         return (
-            <ListItem key={index}>
+            <ListItem>
                 <ListItemText
                     primary={choice}
                     primaryTypographyProps={{
                         variant: "h4",
                     }}
                 />
-                <IconButton>
-                    <EditIcon onClick={() => setEditing(true)} />
+                <IconButton onClick={() => setEditing(true)}>
+                    <EditIcon />
                 </IconButton>
                 <IconButton onClick={() => onDelete(index)}>
                     <DeleteIcon />
